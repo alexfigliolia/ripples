@@ -1,0 +1,39 @@
+{
+  "ts-node": {
+    "swc": true,
+    "typeCheck": false
+  },
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": [
+      "DOM",
+      "ESNext"
+    ],
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "noFallthroughCasesInSwitch": true,
+    "isolatedModules": true,
+    "noEmit": true
+  },
+  "include": [
+    "src",
+    "ci",
+    "cd",
+    "**/*.json",
+    "**/*.ts",
+    "**/*.js",
+    ".eslintrc.js"
+  ],
+  "exclude": [
+    "coverage",
+    "dist",
+    "node_modules"
+  ]
+}
