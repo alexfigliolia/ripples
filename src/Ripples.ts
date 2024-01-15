@@ -25,7 +25,7 @@ export class Ripples extends Options {
     this.updateSize = this.updateSize.bind(this);
     this.onMouseMove = this.onMouseMove.bind(this);
     this.positionCanvas();
-    // this.setupWebGL();
+    this.setupWebGL();
   }
 
   private positionCanvas() {
@@ -38,7 +38,7 @@ export class Ripples extends Options {
     this.canvas.style.bottom = "0";
     this.canvas.style.left = "0";
     this.canvas.style.zIndex = "-1";
-    const { position, zIndex } = this.target.style;
+    const { position, zIndex } = window.getComputedStyle(this.target);
     this.zIndex = zIndex;
     this.position = position;
     this.target.style.zIndex = "0";
@@ -234,10 +234,11 @@ export class Ripples extends Options {
   }
 
   private loadImage() {
+    const { backgroundImage } = window.getComputedStyle(this.target);
     const newImageSource =
       this.imageUrl ||
       this.extractUrl(this.originalCssBackgroundImage) ||
-      this.extractUrl(this.target.style.backgroundImage);
+      this.extractUrl(backgroundImage);
 
     // If image source is unchanged, don't reload it.
     if (newImageSource == this.imageSource) {
@@ -435,13 +436,11 @@ export class Ripples extends Options {
     // (either the chrome window or some element, depending on attachment)
     let container: Record<string, number>;
     if (backgroundAttachment == "fixed") {
-      container = { left: window.pageXOffset, top: window.pageYOffset };
+      container = { left: window.scrollX, top: window.scrollY };
       container.width = window.innerWidth;
       container.height = window.innerHeight;
     } else {
       container = DOMRect as unknown as Record<string, number>;
-      container.width = DOMRect.width;
-      container.height = DOMRect.height;
     }
     const [height, width] = this.computeBackgroundSize(
       backgroundSize,
@@ -461,8 +460,6 @@ export class Ripples extends Options {
     } else {
       y = container.top + parseFloat(y);
     }
-
-    console.log("BACKGROUND", { backgroundPosition, x, y, width, height });
 
     const floats = new Float32Array([
       (DOMRect.left - x) / width,
@@ -625,13 +622,14 @@ export class Ripples extends Options {
   }
 
   private hideCssBackground() {
-    // Check whether we're changing inline CSS or overriding a global CSS rule.
     const inlineCss = this.target.style.backgroundImage;
     if (inlineCss == "none") {
       return;
     }
     this.originalInlineCss = inlineCss;
-    this.originalCssBackgroundImage = this.target.style.backgroundImage;
+    this.originalCssBackgroundImage = window.getComputedStyle(
+      this.target,
+    ).backgroundImage;
     this.target.style.backgroundImage = "none";
   }
 
@@ -644,8 +642,11 @@ export class Ripples extends Options {
     radius: number,
     strength: number,
   ) {
-    const borderTop = parseFloat(this.target.style.borderTopWidth || "0");
-    const borderLeft = parseFloat(this.target.style.borderLeftWidth || "0");
+    const { borderTopWidth, borderLeftWidth } = window.getComputedStyle(
+      this.target,
+    );
+    const borderTop = parseInt(borderTopWidth || "0");
+    const borderLeft = parseInt(borderLeftWidth || "0");
     const { top, left } = this.target.getBoundingClientRect();
     this.drop(
       pointer.pageX - left - borderLeft,
