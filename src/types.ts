@@ -26,3 +26,21 @@ export interface Program {
   uniforms: Record<string, WebGLUniformLocation>;
   locations: Record<string, WebGLUniformLocation>;
 }
+
+export interface TargetOffset {
+  top: number;
+  left: number;
+  width: number;
+  height: number;
+}
+
+export interface IStyleCache {
+  zIndex: string;
+  position: string;
+  backgroundWidth: number;
+  backgroundHeight: number;
+  originalInlineCSS: string;
+  originalCSSBackgroundImage: string;
+}
+
+export type StyleCacheKey = keyof IStyleCache;
