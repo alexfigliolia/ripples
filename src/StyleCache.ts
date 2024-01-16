@@ -24,4 +24,8 @@ export class StyleCache extends Map<StyleCacheKey, IStyleCache[StyleCacheKey]> {
   public override get<K extends StyleCacheKey>(key: K) {
     return super.get(key) as IStyleCache[K];
   }
+
+  public evict<K extends StyleCacheKey>(key: K) {
+    return super.set(key, "");
+  }
 }

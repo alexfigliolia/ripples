@@ -98,7 +98,7 @@ export class WebGL extends Options {
       canvas.getContext("experimental-webgl")) as WebGLRenderingContext;
   }
 
-  private async loadImage() {
+  protected async loadImage() {
     const { backgroundImage } = window.getComputedStyle(this.target);
     const newImageSource =
       this.imageUrl ||

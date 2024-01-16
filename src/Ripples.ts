@@ -41,6 +41,7 @@ export class Ripples extends WebGL {
     ) {
       this.canvas.width = offsetWidth;
       this.canvas.height = offsetHeight;
+      void this.reloadImage();
     }
   }
 
@@ -78,6 +79,12 @@ export class Ripples extends WebGL {
     this.restoreCSSBackground();
     cancelAnimationFrame(this.time);
     this.destroyed = true;
+  }
+
+  public reloadImage() {
+    this.restoreCSSBackground();
+    this.StyleCache.evict("originalCSSBackgroundImage");
+    return this.loadImage();
   }
 
   private cacheTargetPositions() {
