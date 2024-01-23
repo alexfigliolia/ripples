@@ -1,6 +1,6 @@
 {
   "name": "@figliolia/ripples",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "WebGL ripples based on the clever work of Pim Schreurs",
   "keywords": [
     "WebGL",

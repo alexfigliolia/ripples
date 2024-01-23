@@ -22,25 +22,19 @@ import { Ripples } from "@figliolia/ripples";
 
 const DOMElement = document.getElementByID("myElement");
 
-const rips = new Ripples(DOMElement);
+const rips = new Ripples(DOMElement, {
+  resolution: 512,
+  dropRadius: 10,
+  perturbance: 0.02,
+});
 
 // when you're all done rips.destroy()
 ```
 
-Optionally you can tweak the behavior and appearance by initializing it with options (See the [options secton](#options) for the full list of options):
-
-```typescript
-const rips = new Ripples(DOMElement, ({
-  dropRadius: ...,
-  perturbance: ...,
-  ...
-});
-```
-
-The Ripples Interface also has several methods to programmatically add drops, show, hide or remove the effects among other things. See the [methods section](#methods) for more details.
-
 Options
 -------
+Optionally you can tweak the behavior and appearance by initializing it with some different options:
+
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | imageUrl | string | null | The URL of the image to use as the background. If absent the plugin will attempt to use the value of the computed `background-image` CSS property instead. Data-URIs are accepted as well. |
@@ -53,6 +47,8 @@ Options
 
 Methods
 -------
+The Ripples Interface also has several methods to programmatically add drops, show, hide or remove the effects among other things:
+
 ### drop
 Call `new Ripples(...args).drop(x, y, radius, strength)` to manually add a drop at the element's relative coordinates (x, y). `radius` controls the drop's size and `strength` the amplitude of the resulting ripple.
 
