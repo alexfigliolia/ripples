@@ -27,7 +27,6 @@ export class BrowserSupport implements BrowserConfig {
         configurations[i].type,
         null,
       );
-
       this.GL.framebufferTexture2D(
         this.GL.FRAMEBUFFER,
         this.GL.COLOR_ATTACHMENT0,
