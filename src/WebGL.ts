@@ -32,7 +32,9 @@ export class WebGL extends Options {
       this.GL.STATIC_DRAW,
     );
     this.Textures.setTransparent();
-    void this.loadImage();
+    void this.loadImage().then(() => {
+      this.onInitialized?.();
+    });
     this.GL.clearColor(0, 0, 0, 0);
     this.GL.blendFunc(this.GL.SRC_ALPHA, this.GL.ONE_MINUS_SRC_ALPHA);
   }

@@ -1,4 +1,4 @@
-import type { IRipples } from "./types";
+import type { Callback, IRipples } from "./types";
 
 export class Options {
   resolution: number;
@@ -7,6 +7,7 @@ export class Options {
   crossOrigin: string;
   interactive: boolean;
   imageUrl: string | null;
+  onInitialized?: Callback;
   constructor(options: Partial<IRipples>) {
     const configuration = this.configure(options);
     this.imageUrl = configuration.imageUrl;
@@ -15,6 +16,7 @@ export class Options {
     this.interactive = configuration.interactive;
     this.perturbance = configuration.perturbance;
     this.crossOrigin = configuration.crossOrigin;
+    this.onInitialized = configuration.onInitialized;
   }
 
   public static defaults = {

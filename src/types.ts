@@ -12,6 +12,7 @@ export interface IRipples {
   perturbance: number;
   interactive: boolean;
   crossOrigin: string;
+  onInitialized?: Callback;
 }
 
 export interface Extensions {
