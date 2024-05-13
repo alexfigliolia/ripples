@@ -44,3 +44,5 @@ export interface IStyleCache {
 }
 
 export type StyleCacheKey = keyof IStyleCache;
+
+export type Callback = () => void;

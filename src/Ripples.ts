@@ -1,8 +1,9 @@
+import { Animations } from "./Animation";
 import { WebGL } from "./WebGL";
 import type { IRipples, TargetOffset } from "./types";
 
 export class Ripples extends WebGL {
-  time = 0;
+  ID?: string;
   visible = false;
   running = false;
   destroyed = false;
@@ -77,7 +78,9 @@ export class Ripples extends WebGL {
     this.target.removeEventListener("mousemove", this.onMouseMove);
     this.target.removeChild(this.canvas);
     this.restoreCSSBackground();
-    cancelAnimationFrame(this.time);
+    if (this.ID) {
+      Animations.delete(this.ID);
+    }
     this.destroyed = true;
   }
 
@@ -101,13 +104,11 @@ export class Ripples extends WebGL {
     this.running = true;
     this.initialized = true;
     this.setupPointerEvents();
-    const step = () => {
+    this.ID = Animations.register(() => {
       if (!this.destroyed) {
         this.step();
-        this.time = requestAnimationFrame(step);
       }
-    };
-    this.time = requestAnimationFrame(step);
+    });
   }
 
   private setupPointerEvents() {
