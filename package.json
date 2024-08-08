@@ -1,6 +1,6 @@
 {
   "name": "@figliolia/ripples",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "WebGL ripples based on the clever work of Pim Schreurs",
   "keywords": [
     "WebGL",
@@ -37,15 +37,15 @@
     "test": "tsx ci/commands/Test.ts"
   },
   "dependencies": {
-    "@figliolia/event-emitter": "^1.1.5",
-    "@figliolia/ts-packager": "^1.1.0"
+    "@figliolia/event-emitter": "^1.1.6"
   },
   "peerDependencies": {
-    "@figliolia/event-emitter": "^1.1.5"
+    "@figliolia/event-emitter": "^1.1.6"
   },
   "devDependencies": {
     "@figliolia/child-process": "^1.0.4",
     "@figliolia/ts-packager": "^1.1.0",
+    "@types/jest": "^29.5.12",
     "@types/node": "^20.11.19",
     "@typescript-eslint/eslint-plugin": "^5.59.1",
     "@typescript-eslint/parser": "^5.59.1",
@@ -59,6 +59,7 @@
     "eslint-plugin-prettier": "^5.1.3",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "eslint-plugin-unused-imports": "3",
+    "jest": "^29.7.0",
     "prettier": "^3.2.4",
     "tsc-alias": "^1.8.8",
     "tsx": "^4.17.0",

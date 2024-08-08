@@ -1,14 +1,12 @@
-import { AutoIncrementingID } from "@figliolia/event-emitter";
+import { Subscriptable } from "@figliolia/event-emitter";
 import type { Callback } from "./types";
 
 export class Animations {
   private static frame: number | null = null;
-  private static IDs = new AutoIncrementingID();
-  private static stack = new Map<string, Callback>();
+  private static callstack = new Subscriptable<Callback>();
 
   public static register(callback: Callback) {
-    const ID = this.IDs.get();
-    this.stack.set(ID, callback);
+    const ID = this.callstack.register(callback);
     void Promise.resolve().then(() => {
       this.nextFrame();
     });
@@ -16,7 +14,7 @@ export class Animations {
   }
 
   public static delete(ID: string) {
-    return this.stack.delete(ID);
+    return this.callstack.remove(ID);
   }
 
   private static nextFrame() {
@@ -28,12 +26,10 @@ export class Animations {
 
   private static animate() {
     this.frame = requestAnimationFrame(() => {
-      if (!this.stack.size) {
+      if (!this.callstack.length) {
         return this.closeLoop();
       }
-      for (const [, callback] of this.stack) {
-        callback();
-      }
+      this.callstack.execute();
       this.animate();
     });
   }
