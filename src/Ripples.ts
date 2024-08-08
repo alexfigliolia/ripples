@@ -1,6 +1,6 @@
 import { Animations } from "./Animation";
-import { WebGL } from "./WebGL";
 import type { IRipples, TargetOffset } from "./types";
+import { WebGL } from "./WebGL";
 
 export class Ripples extends WebGL {
   ID?: string;

@@ -5,14 +5,15 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  ignorePatterns: ["node_modules", "dist", "coverage", "__Stealth__"],
+  ignorePatterns: ["node_modules", "build", "coverage", "dist"],
   extends: [
     "eslint:recommended",
-    "plugin:prettier/recommended",
-    "plugin:@typescript-eslint/recommended",
     "plugin:import/recommended",
     "plugin:import/typescript",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:prettier/recommended",
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
@@ -21,13 +22,10 @@ module.exports = {
     sourceType: "module",
     tsconfigRootDir: __dirname, // eslint-disable-line no-undef
     project: "./tsconfig.json",
-    ecmaFeatures: {
-      jsx: true,
-    },
   },
   overrides: [
     {
-      files: ["**/*.jsx", "**/*.js", "**/*.ts", "**/*.tsx"],
+      files: ["**/*.js", "**/*.ts"],
     },
   ],
   plugins: [
@@ -36,6 +34,7 @@ module.exports = {
     "json-format",
     "prettier",
     "@typescript-eslint",
+    "unused-imports",
   ],
   rules: {
     radix: 0,
@@ -49,6 +48,8 @@ module.exports = {
     "no-prototype-builtins": 0,
     "prefer-rest-params": 0,
     "no-mixed-spaces-and-tabs": 0,
+    "import/no-cycle": "error",
+    "unused-imports/no-unused-imports": "error",
     "@typescript-eslint/unbound-method": 0,
     "@typescript-eslint/no-unsafe-argument": 0,
     "@typescript-eslint/no-unsafe-return": 0,
@@ -60,13 +61,28 @@ module.exports = {
     "@typescript-eslint/explicit-module-boundary-types": 0,
     "@typescript-eslint/no-explicit-any": 0,
     "@typescript-eslint/no-unsafe-call": 0,
-    "@typescript-eslint/no-unused-vars": 1,
+    "simple-import-sort/imports": [
+      "error",
+      {
+        groups: [["^node:", "^[a-z]", "^@?\\w", "^", "^\\.", "^\\u0000"]],
+      },
+    ],
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        args: "all",
+        destructuredArrayIgnorePattern: "^_",
+        argsIgnorePattern: "^_",
+      },
+    ],
     "@typescript-eslint/no-shadow": 0,
     "@typescript-eslint/no-unnecessary-type-constraint": 0,
     "@typescript-eslint/no-unsafe-assignment": 0,
     "@typescript-eslint/restrict-plus-operands": 2,
     "@typescript-eslint/consistent-type-imports": "error",
     "@typescript-eslint/no-unsafe-member-access": 0,
+    "@typescript-eslint/require-await": "error",
+    "@typescript-eslint/no-misused-promises": "error",
     "@typescript-eslint/no-floating-promises": [
       "error",
       { ignoreVoid: true, ignoreIIFE: true },

@@ -1,8 +1,4 @@
 {
-  "ts-node": {
-    "swc": true,
-    "typeCheck": false
-  },
   "compilerOptions": {
     "target": "ESNext",
     "lib": [
