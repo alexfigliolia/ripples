@@ -2,6 +2,7 @@ import type { Callback, IRipples } from "./types";
 
 export class Options {
   resolution: number;
+  pixelRatio: number;
   dropRadius: number;
   perturbance: number;
   crossOrigin: string;
@@ -13,6 +14,7 @@ export class Options {
     this.imageUrl = configuration.imageUrl;
     this.dropRadius = configuration.dropRadius;
     this.resolution = configuration.resolution;
+    this.pixelRatio = configuration.pixelRatio;
     this.interactive = configuration.interactive;
     this.perturbance = configuration.perturbance;
     this.crossOrigin = configuration.crossOrigin;
@@ -22,6 +24,7 @@ export class Options {
   public static defaults = {
     imageUrl: null,
     resolution: 256,
+    pixelRatio: window.devicePixelRatio || 1,
     dropRadius: 20,
     perturbance: 0.03,
     interactive: true,
