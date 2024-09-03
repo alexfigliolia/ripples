@@ -41,6 +41,7 @@ Optionally you can tweak the behavior and appearance by initializing it with som
 | dropRadius | float | 20 | The size (in pixels) of the drop that results by clicking or moving the mouse over the canvas. |
 | perturbance | float | 0.03 | Basically the amount of refraction caused by a ripple. 0 means there is no refraction. |
 | resolution | integer | 256 | The width and height of the WebGL texture to render to. The larger this value, the smoother the rendering and the slower the ripples will propagate. |
+| pixelRatio | float | devicePixelRatio | Scale of the canvas rendering. When not set, it defaults to the value of window.devicePixelRatio. Set to 1 if experiencing performance issues. |
 | interactive | bool | true | Whether mouse clicks and mouse movement triggers the effect. |
 | crossOrigin | string | "" | The crossOrigin attribute to use for the affected image. For more information see [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_settings_attributes).
 
