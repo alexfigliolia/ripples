@@ -84,8 +84,10 @@ export class WebGL extends Options {
   }
 
   private positionCanvas() {
-    this.canvas.width = this.target.offsetWidth;
-    this.canvas.height = this.target.offsetHeight;
+    this.canvas.width = this.target.offsetWidth * this.pixelRatio;
+    this.canvas.height = this.target.offsetHeight * this.pixelRatio;;
+    this.canvas.style.width = `${this.target.offsetWidth}px`;
+    this.canvas.style.height = `${this.target.offsetHeight}px`;
     this.canvas.style.position = "absolute";
     this.canvas.style.top = "0";
     this.canvas.style.right = "0";

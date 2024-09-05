@@ -37,11 +37,11 @@ export class Ripples extends WebGL {
   public updateSize() {
     const { offsetHeight, offsetWidth } = this.target;
     if (
-      offsetWidth !== this.canvas.width ||
-      offsetHeight !== this.canvas.height
+      offsetWidth * this.pixelRatio !== this.canvas.width ||
+      offsetHeight * this.pixelRatio !== this.canvas.height
     ) {
-      this.canvas.width = offsetWidth;
-      this.canvas.height = offsetHeight;
+      this.canvas.width = offsetWidth * this.pixelRatio;
+      this.canvas.height = offsetHeight * this.pixelRatio;
       void this.reloadImage();
     }
   }
