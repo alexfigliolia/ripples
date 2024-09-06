@@ -3,7 +3,6 @@ import { Options } from "./Options";
 import { Shaders } from "./Shaders";
 import { StyleCache } from "./StyleCache";
 import { Textures } from "./Textures";
-import type { IRipples } from "./types";
 
 export class WebGL extends Options {
   Shaders: Shaders;
@@ -14,8 +13,11 @@ export class WebGL extends Options {
   GL: WebGLRenderingContext;
   StyleCache = new StyleCache();
   imageSource: string | null = null;
-  constructor(target: HTMLElement, options: Partial<IRipples>) {
-    super(options);
+  constructor(
+    target: HTMLElement,
+    ...rest: ConstructorParameters<typeof Options>
+  ) {
+    super(...rest);
     this.target = target;
     this.canvas = document.createElement("canvas");
     this.positionCanvas();

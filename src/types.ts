@@ -7,7 +7,7 @@ export interface BrowserConfig {
 
 export interface IRipples {
   imageUrl: null | string;
-  resolution: number;
+  resolution: number | "device";
   dropRadius: number;
   perturbance: number;
   interactive: boolean;

@@ -38,9 +38,9 @@ Optionally you can tweak the behavior and appearance by initializing it with som
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | imageUrl | string | null | The URL of the image to use as the background. If absent the plugin will attempt to use the value of the computed `background-image` CSS property instead. Data-URIs are accepted as well. |
-| dropRadius | float | 20 | The size (in pixels) of the drop that results by clicking or moving the mouse over the canvas. |
-| perturbance | float | 0.03 | Basically the amount of refraction caused by a ripple. 0 means there is no refraction. |
-| resolution | integer | 256 | The width and height of the WebGL texture to render to. The larger this value, the smoother the rendering and the slower the ripples will propagate. |
+| dropRadius | float | 10 | The size (in pixels) of the drop that results by clicking or moving the mouse over the canvas. |
+| perturbance | float | 0.02 | Basically the amount of refraction caused by a ripple. 0 means there is no refraction. |
+| resolution | integer | 512 | The width and height of the WebGL texture to render to. The larger this value, the smoother the rendering and the slower the ripples will propagate. This parameter can also accept the string `device` - which will compute the resolution based on the device's capabilities |
 | interactive | bool | true | Whether mouse clicks and mouse movement triggers the effect. |
 | crossOrigin | string | "" | The crossOrigin attribute to use for the affected image. For more information see [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_settings_attributes).
 

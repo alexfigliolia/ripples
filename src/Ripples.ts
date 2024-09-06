@@ -1,5 +1,5 @@
 import { Animations } from "./Animation";
-import type { IRipples, TargetOffset } from "./types";
+import type { TargetOffset } from "./types";
 import { WebGL } from "./WebGL";
 
 export class Ripples extends WebGL {
@@ -8,12 +8,8 @@ export class Ripples extends WebGL {
   running = false;
   destroyed = false;
   initialized = false;
-  constructor(target: HTMLElement, options: Partial<IRipples>) {
-    super(target, options);
-    this.onClick = this.onClick.bind(this);
-    this.onTouch = this.onTouch.bind(this);
-    this.updateSize = this.updateSize.bind(this);
-    this.onMouseMove = this.onMouseMove.bind(this);
+  constructor(...options: ConstructorParameters<typeof WebGL>) {
+    super(...options);
     this.cacheTargetPositions();
     this.setupWebGL();
   }
@@ -34,7 +30,7 @@ export class Ripples extends WebGL {
     this.Textures.swapBufferIndices();
   }
 
-  public updateSize() {
+  public updateSize = () => {
     const { offsetHeight, offsetWidth } = this.target;
     if (
       offsetWidth !== this.canvas.width ||
@@ -44,7 +40,7 @@ export class Ripples extends WebGL {
       this.canvas.height = offsetHeight;
       void this.reloadImage();
     }
-  }
+  };
 
   public show() {
     this.visible = true;
@@ -118,14 +114,14 @@ export class Ripples extends WebGL {
     this.target.addEventListener("touchstart", this.onTouch, { passive: true });
   }
 
-  private onClick(e: MouseEvent) {
+  private onClick = (e: MouseEvent) => {
     if (!this.pointerEventsEnabled) {
       return;
     }
     this.dropAtPointer(e, this.dropRadius * 1.5, 0.14);
-  }
+  };
 
-  private onTouch(e: TouchEvent) {
+  private onTouch = (e: TouchEvent) => {
     if (!this.pointerEventsEnabled) {
       return;
     }
@@ -133,14 +129,14 @@ export class Ripples extends WebGL {
     for (let i = 0; i < touches.length; i++) {
       this.dropAtPointer(touches[i], this.dropRadius, 0.01);
     }
-  }
+  };
 
-  private onMouseMove(e: MouseEvent) {
+  private onMouseMove = (e: MouseEvent) => {
     if (!this.pointerEventsEnabled) {
       return;
     }
     this.dropAtPointer(e, this.dropRadius, 0.01);
-  }
+  };
 
   private get pointerEventsEnabled() {
     return this.visible && this.running && this.interactive;
