@@ -3,9 +3,7 @@ WebGL Ripples
 
 By the powers of WebGL, add a layer of water to your HTML elements which will ripple by cursor interaction!
 
-
-https://github.com/user-attachments/assets/366541ff-7f3b-4430-92a5-b369c50a929b
-
+<video title="Demo" src="https://github.com/user-attachments/assets/366541ff-7f3b-4430-92a5-b369c50a929b" height="auto" width="auto"></video>
 
 Important: this plugin requires the WebGL extension `OES_texture_float` (and `OES_texture_float_linear` for a better effect) and works only with same-origin images (see [this link](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS) for more information on using cross-origin requested images).
 
